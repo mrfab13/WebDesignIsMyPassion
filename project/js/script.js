@@ -1,13 +1,15 @@
 function initBoard()
 {    
-    var theboard = seedboard();
-
-
-    if (Qunsolvable(theboard) == true)
+    /*var theboard = ClearBoard();
+    while(unsolvable(theboard) == true)
     {
-        alert("unsolvable");
-    }
+        theboard = seedboard();
+        solve(theboard, true);
 
+    }*/
+
+
+    theboard = seedboard();
     solve(theboard, true);
 
     var boxRef = document.getElementsByName("box");
@@ -21,8 +23,6 @@ function initBoard()
     }
 
     //console.table(theboard);
-
-
 }
 
 function seedboard()
@@ -48,11 +48,11 @@ function seedboard()
         }
     }
 
-    console.table(theboard);
+    console.log(theboard);
 
 
     
-            /*var num = 1;
+        /*var num = 1;
         var count = 0;
         var count2 = 0;
 
@@ -102,14 +102,11 @@ function solve(theArray, isGeneratingSwitch)
 {
     var tmparr = theArray;
     var diff = 0
-    var JustGiveUp = 3;
-
-    while (checkSolved(tmparr) == false)
+    var i = 0;
+    //while (checkSolved(tmparr) == false)
+   /* while (true)
     {
-        JustGiveUp--;
-
         var comp = tmparr;
-
         var ans = Search(tmparr);
         tmparr = ans[0];
 
@@ -126,7 +123,6 @@ function solve(theArray, isGeneratingSwitch)
         {
             diff = 0;
         }
-
         if (diff >= 2)
         {
             var tmpdepth = depth(tmparr, ans);
@@ -135,18 +131,27 @@ function solve(theArray, isGeneratingSwitch)
                 tmparr = tmpdepth[0];
                 break;
             }
-
             diff = 0;
-
         }
+    }*/
 
-        
-        console.log(JustGiveUp + " number");
+
+    var ans = Search(tmparr);
+
+    while (i < ans[2].length)
+    {
+        tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
+
+        var tmpdepth = depth(tmparr, ans);
+        if (tmpdepth[1] == true)
+        {
+            tmparr = tmpdepth[0];
+            break;
+        }
     }
 
 
     return (tmparr);
-
 }
 
 function depth(theArray, ans)
@@ -235,7 +240,7 @@ function Search(theArray)
                     possibly = removezeros(possibly);
 
 
-                    console.log(possibly + " valid V from pos " + j + " " + i);
+                    //console.log(possibly + " valid V from pos " + j + " " + i);
 
 
                     if (possibly.length >= 1)
