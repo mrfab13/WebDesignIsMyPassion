@@ -9,8 +9,9 @@ function initBoard()
     }*/
 
 
+
     theboard = seedboard();
-    solve(theboard, true);
+    theboard = solve(theboard, true);
 
     var boxRef = document.getElementsByName("box");
     for (var i = 0; i < 9; i++)
@@ -22,8 +23,9 @@ function initBoard()
        }
     }
 
-    //console.table(theboard);
 }
+
+
 
 function seedboard()
 {
@@ -101,116 +103,83 @@ function seedboard()
 function solve(theArray, isGeneratingSwitch)
 {
     var tmparr = theArray;
-    var diff = 0
+
+    console.log(theArray.toString());
     var i = 0;
-    //while (checkSolved(tmparr) == false)
-   /* while (true)
-    {
-        var comp = tmparr;
-        var ans = Search(tmparr);
-        tmparr = ans[0];
-
-        if (ans[2].length == 0)
-        {
-            break;
-        }
-
-        if (comp == tmparr)
-        {
-            diff++;
-        }
-        else
-        {
-            diff = 0;
-        }
-        if (diff >= 2)
-        {
-            var tmpdepth = depth(tmparr, ans);
-            if (tmpdepth[1] == true)
-            {
-                tmparr = tmpdepth[0];
-                break;
-            }
-            diff = 0;
-        }
-    }*/
-
-
     var ans = Search(tmparr);
 
-    while (i < ans[2].length)
-    {
-        tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
+   while (i < ans[2].length)
+   {
+       tmparr = theArray;
+       console.log(ans[2][i] + " at pos " + ans[1] + "- " + (i+1) + " outta " + ans[2].length);
+       tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
+       console.log("deeper");
 
-        var tmpdepth = depth(tmparr, ans);
-        if (tmpdepth[1] == true)
-        {
-            tmparr = tmpdepth[0];
-            break;
-        }
-    }
+       var tmpdepth = depth(tmparr, ans);
+       if (tmpdepth[1] == true)
+       {
+           console.log("game over");
+           tmparr = tmpdepth[0];
+           break;
+       }
 
+       i++;
+   }
 
     return (tmparr);
 }
 
 function depth(theArray, ans)
 {
-    var boxRef = document.getElementsByName("box");
-    for (var i = 0; i < 9; i++)
-    {
-        for (var j = 0; j < 9; j++)
-        {
-            getBox(i,j, boxRef).value = theArray[i][j];
-            getBox(i,j, boxRef).readOnly = true;
-       }
-    }
-
     var i = 0;
-    var diff = 0;
 
     var tmparr = theArray;
+    
 
 
     while (i < ans[2].length)
     {
+        console.log("testing " + ans[2][i] + " at pos " + ans[1] + "- " + (i + 1)  +  " out of " + ans[2].length);
+
+        tmparr = theArray;
         tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
         var comp = tmparr;
+        console.log("search");
         let tmpans = Search(tmparr);
         tmparr = tmpans[0];
 
-        if (checkSolved(tmparr) == true)
+        i++;
+
+
+        if (tmpans[2] == 0 || tmpans[3] == false || Qunsolvable(tmparr) == true)
         {
+            console.log("skip");
+            //tmparr = theArray;
+        }
+        else if (checkSolved(tmparr) == true)
+        {
+            console.log("win");
+
             return {0: tmparr, 1: true};
-        }
-
-        if (Qunsolvable(tmparr) == true)
-        {
-            return {0: theArray, 1: false};
-        }
-
-        if (tmparr == comp)
-        {
-            diff++;
         }
         else
         {
-            diff = 0;
-        }
-
-        if (diff >= 2)
-        {
+            console.log("deepr");
+            
             var tmpdepth = depth(tmparr, tmpans);
+
             if (tmpdepth[1] == true)
             {
-                return {0: tmpdepth[0], 1: true};
-            }
+               console.log("win");
 
-            i++;
-            diff = 0;
-            tmparr = theArray;
+               return {0: tmpdepth[0], 1: true};
+            }
         }
+
+
     }
+
+    console.log("shallower");
 
     return {0: theArray, 1: false};
 }
@@ -220,7 +189,8 @@ function Search(theArray)
     var tmparr = theArray;
     var shortestpossibility = [1,2,3,4,5,6,7,8,9];
     var shortestpos = [0,0]
-    
+    var valid = true;
+
     bigmomma: for (var i = 0; i < 9; i++)
     {
         for (var j = 0; j < 9; j++)
@@ -259,18 +229,19 @@ function Search(theArray)
                         else if (possibly.length == 0)
                         {
                             console.log("no H possible positions at position " + j + " " + i);
+                            valid = false;
                             break bigmomma;
                         }
                         else
                         {
                             shortestpossibility = possibly;
                             shortestpos = [j , i];
-                            tmparr[j][i] = possibly[0];
                             break bigmomma;
                         }
                     }    
                     else if (possibly.length == 0)
                     {
+                        valid = false;
                         console.log("no V possible positions at position " + j + " " + i);
                         break bigmomma;
                     }
@@ -278,6 +249,7 @@ function Search(theArray)
                 }
                 else if (possibly.length == 0)
                 {
+                    valid = false;
                     console.log("no B possible positions at position " + j + " " + i);
                     break bigmomma;
                 }
@@ -286,13 +258,26 @@ function Search(theArray)
         }
     }
 
-    return {0: tmparr, 1: shortestpos, 2: shortestpossibility};
+    tmparr = theArray
+
+
+    if (valid == false)
+    {
+        shortestpossibility = [];
+        shortestpos = [];
+    }
+    else
+    {
+        tmparr[shortestpos[0]][shortestpos[1]] = shortestpossibility[0];
+    }
+
+
+    return {0: tmparr, 1: shortestpos, 2: shortestpossibility, 3: valid};
 }
 
 function checkSolved(theArray)
 {
     var tmparr = theArray;
-    var finished = true;
 
     for (var i = 0; i < 9; i++)
     {
@@ -300,12 +285,12 @@ function checkSolved(theArray)
         {
             if (theArray[j][i] == 0)
             {
-                finished = false;
+                return(false);
             }
         }
     }
 
-    return(finished);
+    return(true);
 }
 
 function Qunsolvable(theArray)
