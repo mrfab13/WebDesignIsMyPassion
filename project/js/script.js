@@ -102,16 +102,17 @@ function seedboard()
 
 function solve(theArray, isGeneratingSwitch)
 {
-    var tmparr = theArray;
+    var tmparr = arrcopy(theArray);
 
-    console.log(theArray.toString());
     var i = 0;
     var ans = Search(tmparr);
 
    while (i < ans[2].length)
    {
-       tmparr = theArray;
+        tmparr = arrcopy(theArray);
        console.log(ans[2][i] + " at pos " + ans[1] + "- " + (i+1) + " outta " + ans[2].length);
+           console.log(theArray.toString());
+
        tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
        console.log("deeper");
 
@@ -133,17 +134,19 @@ function depth(theArray, ans)
 {
     var i = 0;
 
-    var tmparr = theArray;
+    var tmparr = arrcopy(theArray);
+
     
 
 
     while (i < ans[2].length)
     {
         console.log("testing " + ans[2][i] + " at pos " + ans[1] + "- " + (i + 1)  +  " out of " + ans[2].length);
+                console.log(theArray.toString());
 
-        tmparr = theArray;
+
+        tmparr = arrcopy(theArray);
         tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
-        var comp = tmparr;
         console.log("search");
         let tmpans = Search(tmparr);
         tmparr = tmpans[0];
@@ -166,7 +169,7 @@ function depth(theArray, ans)
         {
             console.log("deepr");
             
-            var tmpdepth = depth(tmparr, tmpans);
+            var tmpdepth = depth(arrcopy(tmparr), tmpans);
 
             if (tmpdepth[1] == true)
             {
@@ -181,12 +184,12 @@ function depth(theArray, ans)
 
     console.log("shallower");
 
-    return {0: theArray, 1: false};
+    return {0: arrcopy(theArray), 1: false};
 }
 
 function Search(theArray)
 {
-    var tmparr = theArray;
+    var tmparr = arrcopy(theArray);
     var shortestpossibility = [1,2,3,4,5,6,7,8,9];
     var shortestpos = [0,0]
     var valid = true;
@@ -258,7 +261,7 @@ function Search(theArray)
         }
     }
 
-    tmparr = theArray
+    tmparr = arrcopy(theArray);
 
 
     if (valid == false)
@@ -629,6 +632,20 @@ function getBox(x, y, array)
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function arrcopy(OGarr)
+{
+    var arr = OGarr;
+    var arr2 = [];
+    
+    for (var i = 0; i < arr.length; i++)
+    {
+        arr2[i] = arr[i].slice();
+    }
+
+
+    return(arr2);
 }
 
 function ClearBoard()
