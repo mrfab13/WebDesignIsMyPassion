@@ -1,25 +1,28 @@
 function initBoard()
 {    
-    /*var theboard = ClearBoard();
-    while(unsolvable(theboard) == true)
-    {
-        theboard = seedboard();
-        solve(theboard, true);
-
-    }*/
-
-
-
-    theboard = seedboard();
+    //initlise and complete board
+    var theboard = seedboard();
     theboard = solve(theboard, true);
+    var finabord = arrcopy(theboard);
+
+    //0bomb
+    theboard = zeroDay(theboard , 0); //0= ez, 1 = med 2 = hard
+
 
     var boxRef = document.getElementsByName("box");
     for (var i = 0; i < 9; i++)
     {
         for (var j = 0; j < 9; j++)
         {
-            getBox(i,j, boxRef).value = theboard[i][j];
-            getBox(i,j, boxRef).readOnly = true;
+            if (theboard[i][j] == 0)
+            {
+            
+            }
+            else
+            {
+                getBox(i,j, boxRef).value = theboard[i][j];
+                getBox(i,j, boxRef).readOnly = true;
+            }
        }
     }
 
@@ -49,9 +52,6 @@ function seedboard()
             }
         }
     }
-
-    console.log(theboard);
-
 
     
         /*var num = 1;
@@ -110,16 +110,16 @@ function solve(theArray, isGeneratingSwitch)
    while (i < ans[2].length)
    {
         tmparr = arrcopy(theArray);
-       console.log(ans[2][i] + " at pos " + ans[1] + "- " + (i+1) + " outta " + ans[2].length);
-           console.log(theArray.toString());
+       //console.log(ans[2][i] + " at pos " + ans[1] + "- " + (i+1) + " outta " + ans[2].length);
+          // console.log(theArray.toString());
 
        tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
-       console.log("deeper");
+      // console.log("deeper");
 
        var tmpdepth = depth(tmparr, ans);
        if (tmpdepth[1] == true)
        {
-           console.log("game over");
+          // console.log("game over");
            tmparr = tmpdepth[0];
            break;
        }
@@ -141,13 +141,13 @@ function depth(theArray, ans)
 
     while (i < ans[2].length)
     {
-        console.log("testing " + ans[2][i] + " at pos " + ans[1] + "- " + (i + 1)  +  " out of " + ans[2].length);
-                console.log(theArray.toString());
+        //console.log("testing " + ans[2][i] + " at pos " + ans[1] + "- " + (i + 1)  +  " out of " + ans[2].length);
+              //  console.log(theArray.toString());
 
 
         tmparr = arrcopy(theArray);
         tmparr[ans[1][0]][ans[1][1]] = ans[2][i];
-        console.log("search");
+        //console.log("search");
         let tmpans = Search(tmparr);
         tmparr = tmpans[0];
 
@@ -156,24 +156,23 @@ function depth(theArray, ans)
 
         if (tmpans[2] == 0 || tmpans[3] == false || Qunsolvable(tmparr) == true)
         {
-            console.log("skip");
-            //tmparr = theArray;
+            //console.log("skip");
         }
         else if (checkSolved(tmparr) == true)
         {
-            console.log("win");
+           // console.log("win");
 
             return {0: tmparr, 1: true};
         }
         else
         {
-            console.log("deepr");
+            //console.log("deepr");
             
             var tmpdepth = depth(arrcopy(tmparr), tmpans);
 
             if (tmpdepth[1] == true)
             {
-               console.log("win");
+              // console.log("win");
 
                return {0: tmpdepth[0], 1: true};
             }
@@ -182,7 +181,7 @@ function depth(theArray, ans)
 
     }
 
-    console.log("shallower");
+   // console.log("shallower");
 
     return {0: arrcopy(theArray), 1: false};
 }
@@ -203,19 +202,10 @@ function Search(theArray)
                 var possibly = [1,2,3,4,5,6,7,8,9];
                 possibly = QboxCheck(tmparr, j , i, possibly);
                 possibly = removezeros(possibly);
-
-                //console.log(possibly + " valid BOX from pos " + j + " " + i);
-
-
                 if (possibly.length >= 1)
                 {
                     possibly = QVboxCheck(tmparr, j , i , possibly)
                     possibly = removezeros(possibly);
-
-
-                    //console.log(possibly + " valid V from pos " + j + " " + i);
-
-
                     if (possibly.length >= 1)
                     {
                         possibly = QHboxCheck(tmparr, j , i, possibly)
@@ -231,7 +221,7 @@ function Search(theArray)
                         }
                         else if (possibly.length == 0)
                         {
-                            console.log("no H possible positions at position " + j + " " + i);
+                            //console.log("no H possible positions at position " + j + " " + i);
                             valid = false;
                             break bigmomma;
                         }
@@ -245,7 +235,7 @@ function Search(theArray)
                     else if (possibly.length == 0)
                     {
                         valid = false;
-                        console.log("no V possible positions at position " + j + " " + i);
+                      // console.log("no V possible positions at position " + j + " " + i);
                         break bigmomma;
                     }
 
@@ -253,7 +243,7 @@ function Search(theArray)
                 else if (possibly.length == 0)
                 {
                     valid = false;
-                    console.log("no B possible positions at position " + j + " " + i);
+                   // console.log("no B possible positions at position " + j + " " + i);
                     break bigmomma;
                 }
 
@@ -606,6 +596,57 @@ function QHboxCheck(theArray, x, y, possibly)
     }
 
     return (ppossibly);
+}
+
+function zeroDay(theboard, diff)
+{
+        var i = 0;
+        var x = 0;
+        var y = 0;
+        var diff2 = diff;
+        diff2 += 4;
+ 
+        while (y < 3)
+        {
+            var num = getRndInteger(diff2, (diff2 + 2));
+            
+
+            while (i < num)
+            {
+                var pos = randboxgen(x, y);
+                if (theboard[pos[0]][pos[1]] != 0)
+                {
+                    theboard[pos[0]][pos[1]] = 0;
+                    i++;
+                }
+            }
+
+            i = 0;
+            x++;
+            if (x > 2)
+            {
+                x = 0;
+                y++;
+            }
+        }
+
+        
+
+        
+        return (theboard)
+}
+
+function randboxgen(x, y)
+{
+    var rand1 = getRndInteger(0, 3);
+    var rand2 = getRndInteger(0, 3);
+    var pos = [0,0];
+
+    pos[0] = rand1 + (x * 3);
+    pos[1] = rand2 + (y * 3);
+
+    return (pos);
+
 }
 
 
