@@ -1,3 +1,5 @@
+var bigDiff = 0; //0= ez, 1 = med 2 = hard
+
 function initBoard()
 {    
     //initlise and complete board
@@ -6,7 +8,7 @@ function initBoard()
     var finabord = arrcopy(theboard);
 
     //0bomb
-    theboard = zeroDay(theboard , 0); //0= ez, 1 = med 2 = hard
+    theboard = zeroDay(theboard); 
 
 
     var boxRef = document.getElementsByName("box");
@@ -16,7 +18,8 @@ function initBoard()
         {
             if (theboard[i][j] == 0)
             {
-            
+                getBox(i,j, boxRef).value = null;
+                getBox(i,j, boxRef).readOnly = false;
             }
             else
             {
@@ -27,8 +30,6 @@ function initBoard()
     }
 
 }
-
-
 
 function seedboard()
 {
@@ -598,12 +599,12 @@ function QHboxCheck(theArray, x, y, possibly)
     return (ppossibly);
 }
 
-function zeroDay(theboard, diff)
+function zeroDay(theboard)
 {
         var i = 0;
         var x = 0;
         var y = 0;
-        var diff2 = diff;
+        var diff2 = bigDiff;
         diff2 += 4;
  
         while (y < 3)
@@ -708,3 +709,36 @@ function ClearBoard()
     return (tmpbord);
 }
 
+
+//non suduko
+
+function setdiff(i)
+{
+    bigDiff = i;
+    if (i ==0)
+    {
+        document.getElementById("diffSelect").innerText = "Easy";
+
+    }
+    else if (i == 1)
+    {
+        document.getElementById("diffSelect").innerText = "Medium";
+
+    }
+    else if (i == 2)
+    {
+        document.getElementById("diffSelect").innerText = "Hard";
+
+    }
+    else if (i == -4)
+    {
+        document.getElementById("diffSelect").innerText = "dev";
+
+    }
+    else
+    {
+       document.getElementById("diffSelect").innerText = "err";
+
+    }
+    initBoard();
+}
