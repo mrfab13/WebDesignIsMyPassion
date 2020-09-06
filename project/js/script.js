@@ -1,11 +1,12 @@
 var bigDiff = 0; //0= ez, 1 = med 2 = hard
+var bigBoard = [];
 
 function initBoard()
 {    
     //initlise and complete board
     var theboard = seedboard();
     theboard = solve(theboard, true);
-    var finabord = arrcopy(theboard);
+    bigBoard = arrcopy(theboard);
 
     //0bomb
     theboard = zeroDay(theboard); 
@@ -709,6 +710,27 @@ function ClearBoard()
     return (tmpbord);
 }
 
+function finishBoard()
+{
+    var boxRef = document.getElementsByName("box");
+    for (var i = 0; i < 9; i++)
+    {
+        for (var j = 0; j < 9; j++)
+        {
+            if (bigBoard[i][j] == 0)
+            {
+                getBox(i,j, boxRef).value = null;
+                getBox(i,j, boxRef).readOnly = false;
+            }
+            else
+            {
+                getBox(i,j, boxRef).value = bigBoard[i][j];
+                getBox(i,j, boxRef).readOnly = true;
+            }
+       }
+    }
+}
+
 
 //non suduko
 
@@ -742,3 +764,5 @@ function setdiff(i)
     }
     initBoard();
 }
+
+
