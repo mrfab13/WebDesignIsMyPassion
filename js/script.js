@@ -1,15 +1,21 @@
 var bigDiff = 0; //0= ez, 1 = med 2 = hard
 var bigBoard = [];
+var currentBoard = [];
+var remainingHints = 3;
 
 function initBoard()
 {    
     //initlise and complete board
     var theboard = seedboard();
-    theboard = solve(theboard, true);
+    theboard = solve(theboard);
     bigBoard = arrcopy(theboard);
 
     //0bomb
     theboard = zeroDay(theboard); 
+    currentBoard = arrcopy(theboard);
+
+    remainingHints = (-bigDiff + 3);
+    document.getElementById("hintsText").innerHTML = "remaining hints: " + remainingHints;
 
 
     var boxRef = document.getElementsByName("box");
@@ -102,7 +108,7 @@ function seedboard()
     return(theboard);
 }
 
-function solve(theArray, isGeneratingSwitch)
+function solve(theArray)
 {
     var tmparr = arrcopy(theArray);
 
@@ -765,4 +771,58 @@ function setdiff(i)
     initBoard();
 }
 
+function valueChanged(x, y)
+{
+    var boxRef = document.getElementsByName("box");
+    var input = getBox(y,x, boxRef).value;
 
+    if ((input == "h" || input == "H") && remainingHints > 0)
+    {
+        getBox(y,x, boxRef).value = bigBoard[y][x];
+        getBox(y,x, boxRef).readOnly = true;
+        currentBoard[y][x] = getBox(y,x, boxRef).value;
+        remainingHints--;
+        document.getElementById("hintsText").innerHTML = "remaining hints: " + remainingHints;
+    }
+    else if (!Number.isNaN(parseInt(input)))
+    {
+        if (parseInt(input) != 0)
+        {
+            currentBoard[y][x] = parseInt(input);
+
+            var tmp = solve(currentBoard);
+            if (checkSolved(tmp))
+            {
+                bigBoard = arrcopy(tmp);
+            }
+            else
+            {
+                console.log("invalide position");
+            }
+        }
+        else
+        {
+        
+            //red text
+        }
+    }
+    else if (input == "")
+    {
+        currentBoard[y][x] = 0;
+        var tmp = solve(currentBoard);
+        if (checkSolved(tmp))
+        {
+            bigBoard = arrcopy(tmp);
+        }
+        else
+        {
+            console.log("invalide position");
+        }
+    }
+    else
+    {
+        console.log("i am " + input + " which is not a valid input");
+        //red text
+    }
+
+}

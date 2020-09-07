@@ -2,112 +2,9 @@
 
 <html lang="en">
 <head>
-    <style>
-    body { background-image: url("https://cdna.artstation.com/p/assets/images/images/012/218/974/large/sebastian-kesiak-metalhellchinesejungleconceptfin12.jpg?1533662729"); background-repeat: no-repeat; background-attachment: fixed; background-position: top left; background-size: auto 120%; background-color: #cccccc; }
 
 
-        td {
-            display: block;
-            float: left;
-            width: 40px;
-            height: 40px;
-        }
-
-        #t01 th { 
-            color: white;
-            background-color: black;
-        }
-
-        #t01 tr:nth-child(even) {
-            background-color: #eee;
-        }
-
-        #t01 tr:nth-child(odd) {
-            background-color: #fff;
-        }
-
-        input {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        .button {
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-
-        .button1 {
-            background-color: white;
-            color: black;
-            border: 2px solid #4CAF50;
-        }
-
-        .button1:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-
-        /* Dropdown Button */
-        .dropbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-        }
-
-        /* The container <div> - needed to position the dropdown content */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Dropdown Content (Hidden by Default) */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        /* Links inside the dropdown */
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        /* Show the dropdown menu on hover */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Change the background color of the dropdown button when the dropdown content is shown */
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-
-    </style>
-
-    <script type="text/javascript" src="js/script.js"> </script>
+    <script type="text/javascript" src="js/script.js"></script>
 
 
     <meta charset="utf-8">
@@ -116,6 +13,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
+
+    
+    <link href="css/style.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -125,113 +26,118 @@
 
     <img src="https://cdn.discordapp.com/emojis/439086050741059585.gif?v=1" alt="tets" style="float:none;width:100px;height:100px;">
 
+
+
     <div class="image-test">
         <h1> sudoku </h1>
     </div>
 
     by Vaughan
 
+    <h2 id="hintsText">remaining hints: 3</h2>
+    type 'h' in a box to use a hint
+
     <div class="grid-container">
 
-        <table id="#t01">
+        <table>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(0,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(1,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(2,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(3,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(4,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(5,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(6,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(7,8)">   </td>
             </tr>
             <tr>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
-                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,0)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,1)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,2)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,3)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,4)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,5)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,6)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,7)">   </td>
+                <td> <input size="2" autocomplete="off" maxlength="1" value="" name="box" oninput="valueChanged(8,8)">   </td>
             </tr>
 
         </table>
