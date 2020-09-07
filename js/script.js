@@ -748,29 +748,31 @@ function setdiff(i)
     bigDiff = i;
     if (i ==0)
     {
-        document.getElementById("diffSelect").innerText = "Easy";
+        document.getElementById("diffSelect").innerHTML = "Easy" + '<span class="caret"></span>';
 
     }
     else if (i == 1)
     {
-        document.getElementById("diffSelect").innerText = "Medium";
+        document.getElementById("diffSelect").innerHTML = "Medium" + '<span class="caret"></span>';
 
     }
     else if (i == 2)
     {
-        document.getElementById("diffSelect").innerText = "Hard";
+        document.getElementById("diffSelect").innerHTML = "Hard" + '<span class="caret"></span>';
 
     }
     else if (i == -4)
     {
-        document.getElementById("diffSelect").innerText = "dev";
+        document.getElementById("diffSelect").innerHTML = "dev" + '<span class="caret"></span>';
 
     }
     else
     {
-       document.getElementById("diffSelect").innerText = "err";
+       document.getElementById("diffSelect").innerHTML = "err" +'<span class="caret"></span>';
 
     }
+     
+
     initBoard();
 }
 

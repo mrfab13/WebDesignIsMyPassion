@@ -143,26 +143,20 @@
 
     <script>initBoard();</script>
 
-    <button class="button button1" onclick="initBoard()">refresh board</button>
 
-    <button class="button button1" onclick="finishBoard()">Finish Puzzle</button>
-
-
-    <div class="dropdown">
-        <button class="button button1" id="diffSelect"> Easy </button>
-        <div id="myDropdown" class="dropdown-content">
-            <a onclick="setdiff(0)">Easy</a>
-            <a onclick="setdiff(1)">Medium</a>
-            <a onclick="setdiff(2)">Hard</a>
-            <a onclick="setdiff(-4)">dev</a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-secondary" onclick="initBoard()">refresh board</button>
+        <button type="button" class="btn btn-secondary" onclick="finishBoard()">Finish Puzzle</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="diffSelect">Easy<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a class="dropdown-item btn-secondary" onclick="setdiff(0)">Easy</a></li>
+                <li><a class="dropdown-item btn-secondary" onclick="setdiff(1)">Medium</a></li>
+                <li><a class="dropdown-item btn-secondary" onclick="setdiff(2)">Hard</a></li>
+                <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">dev</a></li>
+            </ul>
         </div>
     </div>
-
-
-
-
-
-
 
 </body>
 </html>
