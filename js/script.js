@@ -5,6 +5,9 @@ var remainingHints = 3;
 
 function initBoard()
 {    
+
+    document.getElementById("winmsge").style.opacity = "0.0";
+
     //initlise and complete board
     var theboard = seedboard();
     theboard = solve(theboard);
@@ -771,6 +774,21 @@ function setdiff(i)
     initBoard();
 }
 
+function arrEQarr(arr1, arr2)
+{
+    for (var i = 0; i < 9; i++)
+    {
+        for (var j = 0; j < 9; j++)
+        {
+            if (arr1[i][j] != arr2[i][j])
+            {
+                return (false)
+            }
+        }
+    }
+    return (true);
+}
+
 function valueChanged(x, y)
 {
     var boxRef = document.getElementsByName("box");
@@ -783,16 +801,33 @@ function valueChanged(x, y)
         currentBoard[y][x] = getBox(y,x, boxRef).value;
         remainingHints--;
         document.getElementById("hintsText").innerHTML = "remaining hints: " + remainingHints;
+
+        if (arrEQarr(currentBoard, bigBoard))
+        {
+            victory();
+        }
     }
     else if (!Number.isNaN(parseInt(input)))
     {
         if (parseInt(input) != 0)
         {
+            var tmp = arrcopy(solve(currentBoard));
+
             currentBoard[y][x] = parseInt(input);
 
-            var tmp = solve(currentBoard);
-            if (checkSolved(tmp))
+            var tmp2 = arrcopy(solve(currentBoard));
+
+
+            if (checkSolved(tmp2))
             {
+                if (arrEQarr(currentBoard, tmp))
+                {
+                    victory();
+                }
+                else
+                {
+                    console.log("valid but not complete");
+                }
                 bigBoard = arrcopy(tmp);
             }
             else
@@ -802,7 +837,6 @@ function valueChanged(x, y)
         }
         else
         {
-        
             //red text
         }
     }
@@ -814,15 +848,15 @@ function valueChanged(x, y)
         {
             bigBoard = arrcopy(tmp);
         }
-        else
-        {
-            console.log("invalide position");
-        }
     }
     else
     {
         console.log("i am " + input + " which is not a valid input");
         //red text
     }
+}
 
+function victory()
+{
+    document.getElementById("winmsge").style.opacity = "1.0";
 }
