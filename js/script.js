@@ -18,7 +18,7 @@ function initBoard()
     currentBoard = arrcopy(theboard);
 
     remainingHints = (-bigDiff + 3);
-    document.getElementById("hintsText").innerHTML = "remaining hints: " + remainingHints;
+    document.getElementById("hintsText").innerHTML = "Remaining Hints: " + remainingHints;
 
 
     var boxRef = document.getElementsByName("box");
@@ -65,50 +65,6 @@ function seedboard()
             }
         }
     }
-
-    
-        /*var num = 1;
-        var count = 0;
-        var count2 = 0;
-
-        for (var i = 0; i < 9; i++)
-        {
-            for (var j = 0; j < 9; j++)
-            {
-                theboard[j][i] = num;
-                num ++;
-
-                count++;
-
-                if (count % 9 == 0)
-                {
-                    num = num + 3; 
-                    count2++;
-
-                    if (count2 % 3 == 0)
-                    {
-                        num++;
-                    }
-                }
-                
-                while (num > 9)
-                {
-                    num = num - 9;
-                }
-
-            }
-        }*/
-
-    /*theboard[0][1] = 0;
-    theboard[2][2] = 0;
-    theboard[8][5] = 0;
-    theboard[8][7] = 0;
-    theboard[5][7] = 0;*/
-
-    /*for (var i = 0; i < 80; i++)
-    {
-        theboard[getRndInteger(0, 9)][getRndInteger(0, 9)] = 0;
-    }*/
 
     return(theboard);
 }
@@ -929,4 +885,15 @@ function showRedTexttoggle()
         document.getElementById("redtoggle").classList.add('btn-danger');
         document.getElementById("redtoggle").classList.remove('btn-success');
     }
+}
+
+function meme()
+{
+    myWindow = window.open("", "", "width=100, height=100");  
+        myWindow = window.open("", "", "width=100, height=100");  
+    myWindow = window.open("", "", "width=100, height=100");  
+    myWindow = window.open("", "", "width=100, height=100");  
+    myWindow = window.open("", "", "width=100, height=100");  
+    myWindow = window.open("", "", "width=100, height=100");  
+
 }

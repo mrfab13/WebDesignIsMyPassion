@@ -16,19 +16,14 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
 
-
-
-    <img src="https://cdn.discordapp.com/emojis/439086050741059585.gif?v=1" alt="tets" style="float:none;width:100px;height:100px;">
-
-
     <img class="winMessage" id="winmsge" src="https://img.pngio.com/fortnite-win-png-111-images-in-collection-page-1-fortnite-win-png-970_240.png" alt="winner">
 
-    <div class="image-test">
-        <h1> sudoku </h1>
+    <div class="transbox">
+        <h1 class="ontop"> Sudoku </h1>
+        <h2 class="ontop" id="hintsText">Remaining Hints: 3</h2>
+        <h6 class="ontop">Type 'h' in a box to use a hint</h6>
     </div>
 
-    <h2 id="hintsText">remaining hints: 3</h2>
-    type 'h' in a box to use a hint
 
     <div class="grid-container">
 
@@ -140,22 +135,23 @@
 
     <script>initBoard();</script>
 
-
-    <div class="btn-group">
-        <button type="button" class="btn btn-secondary" onclick="initBoard()">Refresh Board</button>
-        <button type="button" class="btn btn-secondary" onclick="finishBoard()">Finish Puzzle</button>
-        <button type="button" class="btn btn-danger" onclick="showRedTexttoggle()" id="redtoggle">Check For Mistakes</button>
-
+    <div class="text-center">
         <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="diffSelect">Easy<span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a class="dropdown-item btn-secondary" onclick="setdiff(0)">Easy</a></li>
-                <li><a class="dropdown-item btn-secondary" onclick="setdiff(1)">Medium</a></li>
-                <li><a class="dropdown-item btn-secondary" onclick="setdiff(2)">Hard</a></li>
-                <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">dev</a></li>
-            </ul>
+            <button type="button" class="btn btn-secondary" onclick="initBoard()">Refresh Board</button>
+            <button type="button" class="btn btn-secondary" onclick="finishBoard()">Finish Puzzle</button>
+            <button type="button" class="btn btn-danger" onclick="showRedTexttoggle() " id="redtoggle">Check For Mistakes</button>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="diffSelect">Easy<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(0)">Easy</a></li>
+                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(1)">Medium</a></li>
+                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(2)">Hard</a></li>
+                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">dev</a></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Help</button>
         </div>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Help</button>
     </div>
 
     <div class="modal" id="myModal">
@@ -163,8 +159,8 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Help</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Help Menu</h4>
+                    <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
                 </div>
 
                 <div class="modal-body">Created by Vaughan Webb
@@ -185,6 +181,8 @@
             </div>
         </div>
     </div>
+
+    <img class="centreImage" src="https://cdn.discordapp.com/emojis/439086050741059585.gif?v=1" alt="tets" style="float:none;width:100px;height:100px;">
 
 
 </body>
