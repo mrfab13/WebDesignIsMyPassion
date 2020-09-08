@@ -2,10 +2,10 @@ var bigDiff = 0; //0= ez, 1 = med 2 = hard
 var bigBoard = [];
 var currentBoard = [];
 var remainingHints = 3;
+var showRedText = true;
 
 function initBoard()
 {    
-
     document.getElementById("winmsge").style.opacity = "0.0";
 
     //initlise and complete board
@@ -36,6 +36,8 @@ function initBoard()
                 getBox(i,j, boxRef).value = theboard[i][j];
                 getBox(i,j, boxRef).readOnly = true;
             }
+
+            getBox(i,j, boxRef).style.color = "black";
        }
     }
 
@@ -735,9 +737,12 @@ function finishBoard()
             {
                 getBox(i,j, boxRef).value = bigBoard[i][j];
                 getBox(i,j, boxRef).readOnly = true;
+                getBox(i,j, boxRef).style.color = "black";
             }
        }
     }
+
+    currentBoard = arrcopy(bigBoard);
 }
 
 
@@ -832,14 +837,10 @@ function valueChanged(x, y)
                 }
                 bigBoard = arrcopy(tmp);
             }
-            else
-            {
-                //invalide position red text
-
-            }
         }
         else
         {
+            getBox(y,x, boxRef).value = "";
         }
     }
     else if (input == "")
@@ -853,11 +854,17 @@ function valueChanged(x, y)
     }
     else
     {
-        console.log("i am " + input + " which is not a valid input");
+        getBox(y,x, boxRef).value = "";
     }
 
-
-    redText();
+    if (showRedText == true)
+    {
+        redText();
+    }
+    else
+    {
+        normaltext();
+    }
 }
 
 function victory()
@@ -875,14 +882,51 @@ function redText()
             {
                 if (currentBoard[i][j] != 0)
                 {
-                    console.log("red as position " + i + " " + j);
-
+                    document.getElementsByName("box")[(j * 9) + i].style.color = "red";
                 }
                 else
                 {
-                    
+                    document.getElementsByName("box")[(j * 9) + i].style.color = "blue";
                 }
             }
         }
+    }
+}
+
+function normaltext()
+{
+    var boxRef = document.getElementsByName("box");
+
+    for (var i = 0; i < 9; i++)
+    {
+        for (var j = 0; j < 9; j++)
+        {
+            if (getBox(i,j, boxRef).readOnly == true)
+            {
+                getBox(i,j, boxRef).style.color = "black";
+            }
+            else
+            {
+                getBox(i,j, boxRef).style.color = "blue";
+            }
+        }
+    }
+}
+
+function showRedTexttoggle()
+{
+    showRedText = !showRedText;
+
+    if (showRedText == true)
+    {
+        redText();
+        document.getElementById("redtoggle").classList.add('btn-success');
+        document.getElementById("redtoggle").classList.remove('btn-danger');
+    }
+    else
+    {
+        normaltext();
+        document.getElementById("redtoggle").classList.add('btn-danger');
+        document.getElementById("redtoggle").classList.remove('btn-success');
     }
 }

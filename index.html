@@ -142,8 +142,10 @@
 
 
     <div class="btn-group">
-        <button type="button" class="btn btn-secondary" onclick="initBoard()">refresh board</button>
+        <button type="button" class="btn btn-secondary" onclick="initBoard()">Refresh Board</button>
         <button type="button" class="btn btn-secondary" onclick="finishBoard()">Finish Puzzle</button>
+        <button type="button" class="btn btn-danger" onclick="showRedTexttoggle()" id="redtoggle">Check For Mistakes</button>
+
         <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="diffSelect">Easy<span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
@@ -167,23 +169,23 @@
 
                 <div class="modal-body">Created by Vaughan Webb
 
-                ===IMPORTANT EXTRAS===
+                    ===IMPORTANT EXTRAS===
 
-                -type the letter "h" into any editable box and it will fill it in with one of the possible soultions
-                -you will recive a popup message when you have successfully completed the suduko
-                -pressing "finish puzzle" will not award you with the winning message as it is cheating
+                    -type the letter "h" into any editable box and it will fill it in with one of the possible soultions
+                    -you will recive a popup message when you have successfully completed the suduko
+                    -pressing "finish puzzle" will not award you with the winning message as it is cheating
+                    -check for mistakes will highlight in red all numbers placed in a position that makes the puzzle unsolvable
 
+                    ===BASIC SUDOKU RULES===
 
-
-                ===BASIC SUDOKU RULES===
-
-                -Each vertical and horizontal line must contain digits from 1 to 9
-                -Each block of 3 x 3 sub squares (as indicated by the bold edges) must contain digits 1 to 9
-                -No line or sub square is to have two identical digits.
+                    -Each vertical and horizontal line must contain digits from 1 to 9
+                    -Each block of 3 x 3 sub squares (as indicated by the bold edges) must contain digits 1 to 9
+                    -No line or sub square is to have two identical digits.
                 </div>
             </div>
         </div>
     </div>
+
 
 </body>
 </html>
