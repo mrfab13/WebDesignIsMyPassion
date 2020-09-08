@@ -8,14 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
 
+
 </head>
 <body>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
 
 
 
@@ -27,8 +26,6 @@
     <div class="image-test">
         <h1> sudoku </h1>
     </div>
-
-    by Vaughan
 
     <h2 id="hintsText">remaining hints: 3</h2>
     type 'h' in a box to use a hint
@@ -155,6 +152,36 @@
                 <li><a class="dropdown-item btn-secondary" onclick="setdiff(2)">Hard</a></li>
                 <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">dev</a></li>
             </ul>
+        </div>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Help</button>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Help</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">Created by Vaughan Webb
+
+                ===IMPORTANT EXTRAS===
+
+                -type the letter "h" into any editable box and it will fill it in with one of the possible soultions
+                -you will recive a popup message when you have successfully completed the suduko
+                -pressing "finish puzzle" will not award you with the winning message as it is cheating
+
+
+
+                ===BASIC SUDOKU RULES===
+
+                -Each vertical and horizontal line must contain digits from 1 to 9
+                -Each block of 3 x 3 sub squares (as indicated by the bold edges) must contain digits 1 to 9
+                -No line or sub square is to have two identical digits.
+                </div>
+            </div>
         </div>
     </div>
 

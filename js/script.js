@@ -834,12 +834,12 @@ function valueChanged(x, y)
             }
             else
             {
-                console.log("invalide position");
+                //invalide position red text
+
             }
         }
         else
         {
-            //red text
         }
     }
     else if (input == "")
@@ -854,11 +854,35 @@ function valueChanged(x, y)
     else
     {
         console.log("i am " + input + " which is not a valid input");
-        //red text
     }
+
+
+    redText();
 }
 
 function victory()
 {
     document.getElementById("winmsge").style.opacity = "1.0";
+}
+
+function redText()
+{
+    for (var i = 0; i < 9; i++)
+    {
+        for (var j = 0; j < 9; j++)
+        {
+            if (currentBoard[i][j] != bigBoard[i][j])
+            {
+                if (currentBoard[i][j] != 0)
+                {
+                    console.log("red as position " + i + " " + j);
+
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+    }
 }
