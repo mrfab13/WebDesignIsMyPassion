@@ -16,6 +16,7 @@ table {
     padding: 0px 0px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 
@@ -30,6 +31,7 @@ tr:nth-child(3n) td {
 td {
     border: 1px solid lightgrey;
     padding: 0px 0px;
+
 }
 
 td:first-child {
@@ -47,6 +49,7 @@ input {
     height: 55px;
     text-align: center;
     color: blue;
+
 }
 
 input:read-only {
@@ -58,12 +61,76 @@ input:hover {
 }
 
 .winMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     opacity: 0.0;
+
+    transform: translate(-50%, -50%);
     pointer-events: none;
+    position: fixed;
+    z-index: -999;
+}
+
+@keyframes moveright {
+    0% {
+        opacity: 0.0;
+        transform: translate(100%, 360%);
+    }
+
+    100% {
+        opacity: 1.0;
+        transform: translate(400%, 360%);
+    }
+}
+
+@keyframes spinanim1 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    90% {
+        transform: rotate(360deg);
+    }
+
+    92.5% {
+        transform: rotate(370deg);
+    }
+
+    95% {
+        transform: rotate(350deg);
+    }
+
+    97.5% {
+        transform: rotate(370deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinanim2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    90% {
+        transform: rotate(-360deg);
+    }
+
+    92.5% {
+        transform: rotate(-350deg);
+    }
+
+    95% {
+        transform: rotate(-370deg);
+    }
+
+    97.5% {
+        transform: rotate(-350deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
 }
 
 .modal-content {
@@ -75,6 +142,7 @@ input:hover {
     margin: 1% 35%;
     background-color: rgba(0,0,0,0.2);
     border: 1px solid black;
+    transform:
 }
 
 .ontop {
@@ -92,4 +160,26 @@ input:hover {
 
 .grid-container {
     font-size: 18px;
+}
+
+.spin1 {
+    animation-name: spinanim1;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.spin2 {
+    animation-name: spinanim2;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.moveright {
+    animation-name: moveright;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
 }

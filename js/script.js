@@ -2,11 +2,11 @@ var bigDiff = 0; //0= ez, 1 = med 2 = hard
 var bigBoard = [];
 var currentBoard = [];
 var remainingHints = 3;
-var showRedText = true;
+var showRedText = false;
 
 function initBoard()
 {    
-    document.getElementById("winmsge").style.opacity = "0.0";
+    document.getElementById("winmsgbox").classList.remove("moveright");
 
     //initlise and complete board
     var theboard = seedboard();
@@ -763,7 +763,7 @@ function valueChanged(x, y)
         getBox(y,x, boxRef).readOnly = true;
         currentBoard[y][x] = getBox(y,x, boxRef).value;
         remainingHints--;
-        document.getElementById("hintsText").innerHTML = "remaining hints: " + remainingHints;
+        document.getElementById("hintsText").innerHTML = "Remaining Hints: " + remainingHints;
 
         if (arrEQarr(currentBoard, bigBoard))
         {
@@ -825,25 +825,35 @@ function valueChanged(x, y)
 
 function victory()
 {
-    document.getElementById("winmsge").style.opacity = "1.0";
+    playanimation();
 }
 
 function redText()
 {
+    var boxRef = document.getElementsByName("box");
+
     for (var i = 0; i < 9; i++)
     {
         for (var j = 0; j < 9; j++)
         {
-            if (currentBoard[i][j] != bigBoard[i][j])
+            if (getBox(i,j, boxRef).readOnly == true)
             {
-                if (currentBoard[i][j] != 0)
+                getBox(i,j, boxRef).style.color = "black";
+            }
+            else if (currentBoard[i][j] !=0)
+            {
+                if (currentBoard[i][j] != bigBoard[i][j])
                 {
-                    document.getElementsByName("box")[(j * 9) + i].style.color = "red";
+                    getBox(i,j, boxRef).style.color = "red";
                 }
                 else
                 {
-                    document.getElementsByName("box")[(j * 9) + i].style.color = "blue";
+                    getBox(i,j, boxRef).style.color = "blue";
                 }
+            }
+            else
+            {
+                getBox(i,j, boxRef).style.color = "black";
             }
         }
     }
@@ -861,9 +871,13 @@ function normaltext()
             {
                 getBox(i,j, boxRef).style.color = "black";
             }
-            else
+            else if (currentBoard[i][j] != 0)
             {
                 getBox(i,j, boxRef).style.color = "blue";
+            }
+            else
+            {
+                getBox(i,j, boxRef).style.color = "black";
             }
         }
     }
@@ -887,13 +901,46 @@ function showRedTexttoggle()
     }
 }
 
-function meme()
+function playanimation()
 {
-    myWindow = window.open("", "", "width=100, height=100");  
-        myWindow = window.open("", "", "width=100, height=100");  
-    myWindow = window.open("", "", "width=100, height=100");  
-    myWindow = window.open("", "", "width=100, height=100");  
-    myWindow = window.open("", "", "width=100, height=100");  
-    myWindow = window.open("", "", "width=100, height=100");  
+    document.getElementById("winmsgbox").classList.remove("moveright");
 
+
+    var boxRef = document.getElementsByName("box");
+
+    for (var i = 0; i < 9; i++)
+    {
+        for (var j = 0; j < 9; j++)
+        {
+            getBox(i,j, boxRef).classList.remove("spin1");
+            getBox(i,j, boxRef).classList.remove("spin2");
+            void getBox(i,j, boxRef).offsetWidth; 
+
+            if (Math.random() >= 0.5)
+            {
+                getBox(i,j, boxRef).classList.add("spin1");
+            }
+            else
+            {
+                getBox(i,j, boxRef).classList.add("spin2");
+            }
+        }
+    }
+
+    popoutside();
 }
+
+function sleep(ms) 
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function popoutside() 
+{
+   await sleep(2000);
+   var element = document.getElementById("winmsgbox");
+   element.classList.remove("moveright");
+   void element.offsetWidth;
+   element.classList.add("moveright");
+}
+
