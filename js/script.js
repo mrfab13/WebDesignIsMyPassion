@@ -924,6 +924,8 @@ function playanimation()
             {
                 getBox(i,j, boxRef).classList.add("spin2");
             }
+
+
         }
     }
 
@@ -937,7 +939,7 @@ function sleep(ms)
 
 async function popoutside() 
 {
-   await sleep(2000);
+   await sleep(2300);
    var element = document.getElementById("winmsgbox");
    element.classList.remove("moveright");
    void element.offsetWidth;
