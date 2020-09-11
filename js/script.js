@@ -61,7 +61,7 @@ function seedboard()
             theboard = ClearBoard();
             for (i = 0; i < 10; i++)
             {  
-               theboard[getRndInteger(0, 9)][getRndInteger(0, 9)] = getRndInteger(1, 10);
+                theboard[getRndInteger(0, 9)][getRndInteger(0, 9)] = i;
             }
         }
     }
@@ -598,10 +598,6 @@ function zeroDay(theboard)
                 y++;
             }
         }
-
-        
-
-        
         return (theboard)
 }
 
