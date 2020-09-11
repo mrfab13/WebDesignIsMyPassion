@@ -724,7 +724,7 @@ function setdiff(i)
     }
     else if (i == -4)
     {
-        document.getElementById("diffSelect").innerHTML = "dev" + '<span class="caret"></span>';
+        document.getElementById("diffSelect").innerHTML = "Super Easy" + '<span class="caret"></span>';
 
     }
     else

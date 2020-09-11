@@ -142,7 +142,6 @@
             <button type="button" class="btn btn-secondary" onclick="initBoard()">Refresh Board</button>
             <button type="button" class="btn btn-secondary" onclick="finishBoard()">Finish Puzzle</button>
             <button type="button" class="btn btn-danger" onclick="showRedTexttoggle() " id="redtoggle">Check For Mistakes</button>
-            <button type="button" class="btn btn-danger" onclick="playanimation()">funbutton</button>
 
 
             <div class="btn-group">
@@ -151,7 +150,7 @@
                     <li><a class="dropdown-item btn-secondary" onclick="setdiff(0)">Easy</a></li>
                     <li><a class="dropdown-item btn-secondary" onclick="setdiff(1)">Medium</a></li>
                     <li><a class="dropdown-item btn-secondary" onclick="setdiff(2)">Hard</a></li>
-                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">dev</a></li>
+                    <li><a class="dropdown-item btn-secondary" onclick="setdiff(-4)">Super Easy</a></li>
                 </ul>
             </div>
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">Help</button>
@@ -181,6 +180,14 @@
                     -Each vertical and horizontal line must contain digits from 1 to 9.
                     -Each block of 3 x 3 sub squares (as indicated by the bold edges) must contain digits 1 to 9.
                     -No line or sub square is to have two identical digits.
+
+                    ===Modes===
+                    
+                    -Easy: Each 3x3 box has 4-5 digits and the player has 3 hints.
+                    -Meduim: Each 3x3 box has 3-4 digits and the player has 2 hints.
+                    -Hard: Each 3x3 box has 2-3 digits and the player has 1 hint.
+                    -Super Easy: Each 3x3 box has 8-9 digits and the player has 7 hints. (made for testing game loop)
+                    
                 </div>
             </div>
         </div>
